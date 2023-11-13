@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.RomiDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -25,12 +27,19 @@ public class RobotContainer {
 
   private CommandXboxController m_controller = new CommandXboxController(0);
 
+  private Intake intake;
+  private Arm arm;
+  
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
     m_romiDrivetrain.setDefaultCommand(
         new RunCommand(() -> m_romiDrivetrain.arcadeDrive(m_controller.getLeftY(), m_controller.getLeftX()), m_romiDrivetrain)
     );
+
+    intake = new Intake();
+    arm = new Arm();
 
     // Configure the button bindings
     configureButtonBindings();
@@ -42,7 +51,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    
+    m_controller.leftBumper().whileTrue(new RunCommand(intake :: makeItSpinIn));
+    m_controller.rightBumper().whileTrue(new RunCommand(intake :: makeItSpinOut));
+    
+    m_controller.leftTrigger().whileTrue(new RunCommand(arm :: armUp));
+    m_controller.rightTrigger().whileTrue(new RunCommand(arm :: armDown));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
