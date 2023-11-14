@@ -69,6 +69,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     RunCommand spagehhti = new RunCommand(() -> m_romiDrivetrain.arcadeDrive(0.5, 0));
-    return spagehhti;
+    return spagehhti.withTimeout(3);
   }
 }
