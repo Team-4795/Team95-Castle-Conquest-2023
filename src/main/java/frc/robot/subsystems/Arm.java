@@ -14,11 +14,11 @@ public class Arm extends SubsystemBase{
     }
 
     public void armUp() {
-        colinsArm.set(0.4);
+        colinsArm.set(0.3);
     }
 
     public void armDown() {
-        colinsArm.set(-0.4);
+        colinsArm.set(-0.3);
     }
 
 }
