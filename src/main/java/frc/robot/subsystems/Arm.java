@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.motorcontrol.Talon;
 
 public class Arm extends SubsystemBase{
     
-    private final PWMTalonSRX colinsArm = new PWMTalonSRX(0);
+    private final PWMTalonSRX colinsArm = new PWMTalonSRX(1);
 
     public Arm() {
 
@@ -19,6 +19,10 @@ public class Arm extends SubsystemBase{
 
     public void armDown() {
         colinsArm.set(-0.3);
+    }
+
+    public void armStop() {
+        colinsArm.set(0);
     }
 
 }

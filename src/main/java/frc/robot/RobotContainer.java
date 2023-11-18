@@ -56,10 +56,13 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     m_controller.leftBumper().whileTrue(new RunCommand(intake :: makeItSpinIn));
+    // Add whileFalse statement if intake overheats.
     m_controller.rightBumper().whileTrue(new RunCommand(intake :: makeItSpinOut));
     
     m_controller.leftTrigger().whileTrue(new RunCommand(arm :: armUp));
+    m_controller.leftTrigger().whileFalse(new RunCommand(arm :: armStop));
     m_controller.rightTrigger().whileTrue(new RunCommand(arm :: armDown));
+    m_controller.rightTrigger().whileFalse(new RunCommand(arm :: armStop));
   }
 
   /**
