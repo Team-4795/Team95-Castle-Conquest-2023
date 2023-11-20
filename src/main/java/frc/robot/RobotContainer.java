@@ -37,7 +37,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     m_romiDrivetrain.setDefaultCommand(
-        new RunCommand(() -> m_romiDrivetrain.arcadeDrive(m_controller.getLeftY(), m_controller.getLeftX()), m_romiDrivetrain)
+        new RunCommand(() -> m_romiDrivetrain.arcadeDrive(-m_controller.getLeftY(), -m_controller.getLeftX()), m_romiDrivetrain)
     );
 
     intake = new Intake();
@@ -71,7 +71,11 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    RunCommand spagehhti = new RunCommand(() -> m_romiDrivetrain.arcadeDrive(0.5, 0));
-    return spagehhti.withTimeout(3);
+    SequentialCommandGroup spagehhti = new SequentialCommandGroup(
+      new RunCommand(() -> m_romiDrivetrain.arcadeDrive(-0.8, 0), m_romiDrivetrain).withTimeout(2),
+      new RunCommand(() -> m_romiDrivetrain.arcadeDrive(0.8, 0), m_romiDrivetrain).withTimeout(8),
+      new RunCommand(intake :: makeItSpinOut).withTimeout(2)
+    );
+    return spagehhti;
   }
 }

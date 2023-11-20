@@ -17,7 +17,7 @@ public class RomiDrivetrain extends SubsystemBase {
 
   // The Romi has the left and right motors set to
   // PWM channels 0 and 1 respectively
-  private final PWMTalonSRX m_leftMotor = new PWMTalonSRX(2);
+  private final PWMVictorSPX m_leftMotor = new PWMVictorSPX(2);
   private final PWMVictorSPX m_rightMotor = new PWMVictorSPX(3);
 
   // The Romi has onboard encoders that are hardcoded
