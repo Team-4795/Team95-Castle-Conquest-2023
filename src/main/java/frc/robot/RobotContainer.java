@@ -41,7 +41,7 @@ public class RobotContainer {
     );
 
     intake = new Intake();
-    arm = new Arm();
+    //arm = new Arm();
 
     // Configure the button bindings
     configureButtonBindings();
@@ -59,10 +59,10 @@ public class RobotContainer {
     // Add whileFalse statement if intake overheats.
     m_controller.rightBumper().whileTrue(new RunCommand(intake :: makeItSpinOut));
     
-    m_controller.leftTrigger().whileTrue(new RunCommand(arm :: armUp));
+    /*m_controller.leftTrigger().whileTrue(new RunCommand(arm :: armUp));
     m_controller.leftTrigger().whileFalse(new RunCommand(arm :: armStop));
     m_controller.rightTrigger().whileTrue(new RunCommand(arm :: armDown));
-    m_controller.rightTrigger().whileFalse(new RunCommand(arm :: armStop));
+    m_controller.rightTrigger().whileFalse(new RunCommand(arm :: armStop));*/
   }
 
   /**
