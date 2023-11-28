@@ -9,7 +9,7 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase{
 
     //This makes a motor
-    private final PWMTalonSRX glizzieguzzlerintake = new PWMTalonSRX(0);
+    private final PWMTalonSRX glizzieguzzlerintake = new PWMTalonSRX(4);
 
     public Intake() {
         
@@ -17,11 +17,15 @@ public class Intake extends SubsystemBase{
 
     //intakes balls
     public void makeItSpinIn() {
-        glizzieguzzlerintake.set(0.3);
+        glizzieguzzlerintake.set(0.7);
     }
     //outputs balls
     public void makeItSpinOut() {
-        glizzieguzzlerintake.set(-0.3);
+        glizzieguzzlerintake.set(-0.7);
+    }
+
+    public void makeItNotSpin() {
+        glizzieguzzlerintake.set(0);
     }
 
 

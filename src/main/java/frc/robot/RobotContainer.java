@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.Arm;
+//import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.RomiDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -30,7 +30,7 @@ public class RobotContainer {
   private CommandXboxController m_controller = new CommandXboxController(0);
 
   private Intake intake;
-  private Arm arm;
+ // private Arm arm;
   
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -42,6 +42,8 @@ public class RobotContainer {
 
     intake = new Intake();
     //arm = new Arm();
+
+    intake.setDefaultCommand(new RunCommand(() -> intake.makeItNotSpin(), intake));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -71,10 +73,10 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    SequentialCommandGroup spagehhti = new SequentialCommandGroup(
+    SequentialCommandGroup spagehhti = new SequentialCommandGroup (
       new RunCommand(() -> m_romiDrivetrain.arcadeDrive(-0.8, 0), m_romiDrivetrain).withTimeout(2),
-      new RunCommand(() -> m_romiDrivetrain.arcadeDrive(0.8, 0), m_romiDrivetrain).withTimeout(8),
-      new RunCommand(intake :: makeItSpinOut).withTimeout(2)
+      new RunCommand(() -> m_romiDrivetrain.arcadeDrive(0.8, 0), m_romiDrivetrain).withTimeout(2),
+      new RunCommand(() -> intake.makeItSpinOut()).withTimeout(2)
     );
     return spagehhti;
   }
