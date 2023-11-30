@@ -17,11 +17,11 @@ public class Intake extends SubsystemBase{
 
     //intakes balls
     public void makeItSpinIn() {
-        glizzieguzzlerintake.set(0.7);
+        glizzieguzzlerintake.set(0.8);
     }
     //outputs balls
     public void makeItSpinOut() {
-        glizzieguzzlerintake.set(-0.7);
+        glizzieguzzlerintake.set(-0.8);
     }
 
     public void makeItNotSpin() {
