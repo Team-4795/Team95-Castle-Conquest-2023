@@ -37,7 +37,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     m_romiDrivetrain.setDefaultCommand(
-        new RunCommand(() -> m_romiDrivetrain.arcadeDrive(-m_controller.getLeftY(), -m_controller.getLeftX()), m_romiDrivetrain)
+        new RunCommand(() -> m_romiDrivetrain.arcadeDrive(-0.8 * m_controller.getLeftY(), -0.8 * m_controller.getRightX()), m_romiDrivetrain)
     );
 
     intake = new Intake();
